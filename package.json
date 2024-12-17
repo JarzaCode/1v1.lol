@@ -1,7 +1,7 @@
 {
-  "name": "electron-learn",
-  "version": "1.0.0",
-  "description": "",
+  "name": "1v1.lol",
+  "version": "0.0.2",
+  "description": "A port of 1v1.lol for Electron, works with Windows and Linux",
   "main": "index.js",
   "devDependencies": {
     "electron": "^21.1.0"
@@ -12,9 +12,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "build":{
-    "win":{
+  "build": {
+    "win": {
       "icon": "download.png"
     }
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
   }
 }

@@ -1,7 +1,25 @@
 const electron = require('electron');
+const Bun = require('bun')
+const uBlock = './content/ublock/';
+
+async function loadExtension(extensionPath) {
+  const extensionFile = Bun.file(extensionPath);
+
+  const exists = await extensionFile.exists();
+  if (exists) {
+    try {
+      await electron.session.defaultSession.loadExtension(extensionPath);
+      console.log(`Loaded extension from ${extensionPath}.`);
+    } catch (error) {
+      console.error(`Failed to load extension from ${extensionPath}, ${error}`);
+    };
+  } else {
+    console.error(`Extension at ${extensionPath} does not exist.`);
+  };
+};
 
 let window;
-function create() {
+async function create() {
   window = new electron.BrowserWindow({
     width: 1080,
     minWidth: 680,
@@ -17,11 +35,14 @@ function create() {
     "fullscreen": false,
     "icon": "download.png",
   });
+
+  await loadExtension(uBlock);
+
   //window.setIcon(__dirname + "/images.png");
   window.loadURL("https://1v1.lol");
   //window.setFullScreen(true);
   window.setClosable(true);
 };
-electron.app.on("ready" , () =>{
+electron.app.on("ready" , () => {
   create();
 });
