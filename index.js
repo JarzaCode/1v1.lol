@@ -1,33 +1,22 @@
-import { BrowserWindow, app, session } from 'electron';
-const uBlock = `${__dirname}/content/ublock/`;
+const electron = require('electron');
+const adblocker = require('@ghostery/adblocker-electron');
+const crossfetch = require('cross-fetch');
 
-async function loadExtension(extensionPath) {
-  const extensionFile = Bun.file(extensionPath);
-
-  const exists = await extensionFile.exists();
-  if (exists) {
-    try {
-      await session.defaultSession.loadExtension(extensionPath);
-      console.log(`Loaded extension from ${extensionPath}.`);
-    } catch (error) {
-      console.error(`Failed to load extension from ${extensionPath}, ${error}`);
-    };
-  } else {
-    console.error(`Extension at ${extensionPath} does not exist.`);
-  };
-};
+adblocker.ElectronBlocker.fromPrebuiltAdsAndTracking(crossfetch.fetch).then((blocker) => {
+  blocker.enableBlockingInSession(electron.session.defaultMaxListeners);
+});
 
 let window;
 async function create() {
-  window = new BrowserWindow({
+  window = new electron.BrowserWindow({
     width: 1080,
     minWidth: 680,
     height: 840,
-    title: app.getName(),
+    title: electron.app.getName(),
     webPreferences: {
       nodeIntegration: true,
       "devTools": true,
-      "sandbox": true
+      "sandbox": truerequire
     },
     "autoHideMenuBar": true,
     "backgroundColor": "black",
@@ -35,13 +24,11 @@ async function create() {
     "icon": "download.png",
   });
 
-  await loadExtension(uBlock);
-
   //window.setIcon(__dirname + "/images.png");
   window.loadURL("https://1v1.lol");
   //window.setFullScreen(true);
   window.setClosable(true);
 };
-app.on("ready", () => {
+electron.app.on("ready", () => {
   create();
 });
