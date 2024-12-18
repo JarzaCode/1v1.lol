@@ -2,9 +2,10 @@
   "name": "1v1.lol",
   "version": "0.0.2",
   "description": "A port of 1v1.lol for Electron, works with Windows and Linux",
-  "main": "index.js",
+  "main": "index.ts",
   "devDependencies": {
-    "electron": "^21.1.0"
+    "electron": "^21.1.0",
+    "@types/bun": "latest"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

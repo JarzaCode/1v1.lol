@@ -1,14 +1,14 @@
-const electron = require('electron');
+import { BrowserWindow, app, session } from 'electron';
 const Bun = require('bun')
-const uBlock = './content/ublock/';
+const uBlock = `${__dirname}/content/ublock/`;
 
-async function loadExtension(extensionPath) {
+async function loadExtension(extensionPath: string) {
   const extensionFile = Bun.file(extensionPath);
 
   const exists = await extensionFile.exists();
   if (exists) {
     try {
-      await electron.session.defaultSession.loadExtension(extensionPath);
+      await session.defaultSession.loadExtension(extensionPath);
       console.log(`Loaded extension from ${extensionPath}.`);
     } catch (error) {
       console.error(`Failed to load extension from ${extensionPath}, ${error}`);
@@ -20,11 +20,11 @@ async function loadExtension(extensionPath) {
 
 let window;
 async function create() {
-  window = new electron.BrowserWindow({
+  window = new BrowserWindow({
     width: 1080,
     minWidth: 680,
     height: 840,
-    title: electron.app.getName(),
+    title: app.getName(),
     webPreferences: {
       nodeIntegration: true,
       "devTools": true,
@@ -43,6 +43,6 @@ async function create() {
   //window.setFullScreen(true);
   window.setClosable(true);
 };
-electron.app.on("ready" , () => {
+app.on("ready", () => {
   create();
 });
