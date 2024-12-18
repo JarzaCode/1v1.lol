@@ -15,7 +15,7 @@ const buildConfig: BuildConfig = {
   entrypoints: entrypoints,
   outdir: './build/',
   target: 'node',
-  format: 'esm',
+  format: 'cjs',
   splitting: false,
   plugins: [],
   external: [],

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "bun run ./scripts/build.ts",
-    "start": "electron ."
+    "start": "electron ./build/index.js"
   },
   "keywords": [],
   "author": "",
