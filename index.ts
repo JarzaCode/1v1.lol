@@ -1,5 +1,4 @@
 import { BrowserWindow, app, session } from 'electron';
-const Bun = require('bun')
 const uBlock = `${__dirname}/content/ublock/`;
 
 async function loadExtension(extensionPath: string) {

@@ -8,6 +8,7 @@
     "@types/bun": "latest"
   },
   "scripts": {
+    "build": "bun run ./scripts/build.ts",
     "start": "electron ."
   },
   "keywords": [],
@@ -20,5 +21,8 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "bun": "^1.1.39"
   }
 }
