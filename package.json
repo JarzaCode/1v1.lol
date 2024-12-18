@@ -1,15 +1,15 @@
 {
   "name": "1v1.lol",
   "version": "0.0.2",
+  "type": "module",
   "description": "A port of 1v1.lol for Electron, works with Windows and Linux",
-  "main": "index.ts",
+  "main": "index.js",
   "devDependencies": {
     "electron": "^21.1.0",
     "@types/bun": "latest"
   },
   "scripts": {
-    "build": "bun run ./scripts/build.ts",
-    "start": "electron ./build/index.js"
+    "start": "electron ."
   },
   "keywords": [],
   "author": "",

@@ -22,9 +22,6 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false,
-
-    // build directory
-    "outDir": "./build"
+    "noPropertyAccessFromIndexSignature": false
   }
 }

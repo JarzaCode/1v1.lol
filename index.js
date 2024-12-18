@@ -1,7 +1,7 @@
 import { BrowserWindow, app, session } from 'electron';
 const uBlock = `${__dirname}/content/ublock/`;
 
-async function loadExtension(extensionPath: string) {
+async function loadExtension(extensionPath) {
   const extensionFile = Bun.file(extensionPath);
 
   const exists = await extensionFile.exists();
